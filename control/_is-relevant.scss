@@ -1,3 +1,7 @@
 @function is-relevant($value, $inherit: false) {
-  @return not is-bool($value) and not is-null($value) and not is-sameas($value, $inherit);
+  @return $value != ()
+      and $value != ''
+      and not is-bool($value)
+      and not is-null($value)
+      and not is-sameas($value, $inherit);
 }
