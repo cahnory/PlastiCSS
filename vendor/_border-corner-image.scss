@@ -1,0 +1,7 @@
+@mixin -border-corner-image($value...) {
+  @include vendor(webkit) { -webkit-border-corner-image: $value }
+  @include vendor(moz)    {    -moz-border-corner-image: $value }
+  @include vendor(o)      {      -o-border-corner-image: $value }
+  
+  border-corner-image: $value;
+}

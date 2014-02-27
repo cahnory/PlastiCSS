@@ -1,0 +1,22 @@
+@mixin -display($value...) {
+  @if $value == flex {
+    @include vendor(webkit) {
+      display: -webkit-box;
+      display: -webkit-flex;
+    }
+    @include vendor(moz)    { display: -moz-box }
+    @include vendor(ms)     { display: -ms-flexbox }
+    display: flex;
+  }
+  @else if $value == inline-block {
+    @include vendor(moz)    { display: -moz-inline-box }
+    display: inline-block;
+    @include vendor(ie) {
+      *display: inline;
+      *zoom: 1;
+    }
+  }
+  @else {
+    display: $value;
+  }
+}

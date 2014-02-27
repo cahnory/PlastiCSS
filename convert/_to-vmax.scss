@@ -1,0 +1,3 @@
+@function to-vmax($value, $coef: 1) {
+  @return 1vmax * to-number($value, $coef);
+}

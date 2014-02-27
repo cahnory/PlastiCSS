@@ -1,0 +1,7 @@
+@mixin -transition-property($value...) {
+  @include vendor(webkit) { -webkit-transition-property: $value }
+  @include vendor(moz)    {    -moz-transition-property: $value }
+  @include vendor(o)      {      -o-transition-property: $value }
+  
+  transition-property: $value;
+}

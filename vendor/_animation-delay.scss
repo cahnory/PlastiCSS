@@ -1,0 +1,7 @@
+@mixin -animation-delay($value...) {
+  @include vendor(webkit) { -webkit-animation-delay: $value }
+  @include vendor(moz)    {    -moz-animation-delay: $value }
+  @include vendor(o)      {      -o-animation-delay: $value }
+  
+  animation-delay: $value;
+}

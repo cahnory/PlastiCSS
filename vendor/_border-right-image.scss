@@ -1,0 +1,7 @@
+@mixin -border-right-image($value...) {
+  @include vendor(webkit) { -webkit-border-right-image: $value }
+  @include vendor(moz)    {    -moz-border-right-image: $value }
+  @include vendor(o)      {      -o-border-right-image: $value }
+  
+  border-right-image: $value;
+}

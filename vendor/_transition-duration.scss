@@ -1,0 +1,7 @@
+@mixin -transition-duration($value...) {
+  @include vendor(webkit) { -webkit-transition-duration: $value }
+  @include vendor(moz)    {    -moz-transition-duration: $value }
+  @include vendor(o)      {      -o-transition-duration: $value }
+  
+  transition-duration: $value;
+}

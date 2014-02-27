@@ -1,0 +1,6 @@
+@mixin -column-count($value...) {
+  @include vendor(webkit) { -webkit-column-count: $value }
+  @include vendor(moz)    {    -moz-column-count: $value }
+  
+  column-count: $value;
+}

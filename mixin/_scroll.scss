@@ -1,0 +1,12 @@
+@mixin scroll($way: y, $alt: auto) {
+  @if $way == y {
+    overflow-x: $alt;
+    overflow-y: scroll;
+    overflow: -moz-scrollbars-vertical;
+  }
+  @if $way == x {
+    overflow-y: $alt;
+    overflow-x: scroll;
+    overflow: -moz-scrollbars-horizontal;
+  }
+}

@@ -1,0 +1,3 @@
+@function to-mm($value, $coef: 1) {
+  @return 1mm * to-number($value, $coef);
+}

@@ -1,0 +1,6 @@
+@mixin -column-span($value...) {
+  @include vendor(webkit) { -webkit-column-span: $value }
+  @include vendor(moz)    {    -moz-column-span: $value }
+  
+  column-span: $value;
+}

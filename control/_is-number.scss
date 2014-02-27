@@ -1,0 +1,3 @@
+@function is-number($value, $unit: null) {
+  @return type-of($value) == number and (not is-string($unit) or unit($value) == $unit);
+}

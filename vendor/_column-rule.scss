@@ -1,0 +1,6 @@
+@mixin -column-rule($value...) {
+  @include vendor(webkit) { -webkit-column-rule: $value }
+  @include vendor(moz)    {    -moz-column-rule: $value }
+  
+  column-rule: $value;
+}

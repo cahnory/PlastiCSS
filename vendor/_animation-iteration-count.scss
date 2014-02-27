@@ -1,0 +1,7 @@
+@mixin -animation-iteration-count($value...) {
+  @include vendor(webkit) { -webkit-animation-iteration-count: $value }
+  @include vendor(moz)    {    -moz-animation-iteration-count: $value }
+  @include vendor(o)      {      -o-animation-iteration-count: $value }
+  
+  animation-iteration-count: $value;
+}

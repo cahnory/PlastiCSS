@@ -1,0 +1,6 @@
+@mixin -column-rule-color($value...) {
+  @include vendor(webkit) { -webkit-column-rule-color: $value }
+  @include vendor(moz)    {    -moz-column-rule-color: $value }
+  
+  column-rule-color: $value;
+}

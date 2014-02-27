@@ -1,0 +1,3 @@
+@function to-dpcm($value, $coef: 1) {
+  @return 1dpcm * to-number($value, $coef);
+}

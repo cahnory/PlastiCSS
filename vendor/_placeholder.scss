@@ -1,0 +1,22 @@
+@mixin -placeholder($base: null) {
+  @include vendor(webkit) {
+    #{'#{$base}::-webkit-input-placeholder'} {
+      @content;
+    }
+  }
+  
+  @include vendor(moz) {
+    #{'#{$base}:-moz-placeholder'} {
+      @content;
+    }
+    #{'#{$base}::-moz-placeholder'} {
+      @content;
+    }
+  }
+  
+  @include vendor(ie) {
+    #{'#{$base}:-ie-input-placeholder'} {
+      @content;
+    }
+  }
+}

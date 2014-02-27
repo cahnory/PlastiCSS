@@ -1,0 +1,3 @@
+@function to-ch($value, $coef: 1) {
+  @return 1ch * to-number($value, $coef);
+}

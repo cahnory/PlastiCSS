@@ -1,0 +1,17 @@
+@mixin outsight($extend: true) {
+  @include mixin(if($extend, '%plasticss__mixin__outsight', false)) {
+    border: none;
+    clip: rect(0,0,0,0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+}
+
+// !placeholders
+%plasticss__mixin__outsight {
+  @include outsight(false);
+}

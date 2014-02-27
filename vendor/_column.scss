@@ -1,0 +1,6 @@
+@mixin -column($value...) {
+  @include vendor(webkit) { -webkit-column: $value }
+  @include vendor(moz)    {    -moz-column: $value }
+  
+  column: $value;
+}

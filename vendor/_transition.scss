@@ -1,0 +1,7 @@
+@mixin -transition($value...) {
+  @include vendor(webkit) { -webkit-transition: $value }
+  @include vendor(moz)    {    -moz-transition: $value }
+  @include vendor(o)      {      -o-transition: $value }
+  
+  transition: $value;
+}

@@ -1,0 +1,3 @@
+@function to-ms($value, $coef: 1) {
+  @return 1ms * to-number($value, $coef);
+}

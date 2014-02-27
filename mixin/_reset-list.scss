@@ -1,0 +1,12 @@
+@mixin reset-list($extend: true) {
+  @include mixin(if($extend, '%plasticss__mixin__reset-list', false)) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+// !placeholders
+%plasticss__mixin__reset-list {
+  @include reset-list(false);
+}

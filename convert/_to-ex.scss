@@ -1,0 +1,3 @@
+@function to-ex($value, $coef: 1) {
+  @return 1ex * to-number($value, $coef);
+}

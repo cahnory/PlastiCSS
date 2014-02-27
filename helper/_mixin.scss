@@ -1,0 +1,8 @@
+@mixin mixin($extend: false) {
+  @if is-string($extend) and $plasticss__media__opened == 0 {
+    @extend #{$extend};
+  }
+  @else {
+    @content;
+  }
+}

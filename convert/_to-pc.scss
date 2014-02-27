@@ -1,0 +1,3 @@
+@function to-pc($value, $coef: 1) {
+  @return 1pc * to-number($value, $coef);
+}

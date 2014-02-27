@@ -1,0 +1,6 @@
+@mixin -tab-size($value...) {
+  @include vendor(moz) {  -moz-tab-size: $value }
+  @include vendor(o)   {    -o-tab-size: $value }
+  
+  tab-size: $value;
+}

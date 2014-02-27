@@ -1,0 +1,13 @@
+@mixin -opacity($value...) {
+  @include vendor(ie) {
+    $_percent: $value * 100;
+    
+    // IE < 9
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$_percent})";
+
+    // IE < 8
+    filter: alpha(opacity=$_percent);
+  }
+  
+  opacity: $value;
+}

@@ -1,0 +1,9 @@
+@mixin -radial-gradient($values...) {
+
+  @include vendor(webkit) { background-image: -webkit-radial-gradient($values); }
+  @include vendor(moz)    { background-image:    -moz-radial-gradient($values); }
+  @include vendor(ms)     { background-image:     -ms-radial-gradient($values); }
+  @include vendor(o)      { background-image:      -o-radial-gradient($values); }
+
+  background-image: linear-gradient($values);
+}

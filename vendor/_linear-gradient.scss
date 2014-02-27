@@ -1,0 +1,51 @@
+@mixin -linear-gradient($angle, $values...) {
+  // Find angle
+  $_angle: null;
+  @if not is-number($angle) {
+    @if index($angle, top) {
+      @if index($angle, left) {
+        $_angle: 315deg;
+      }
+      @else if index($angle, right) {
+        $_angle: 45deg;
+      }
+      @else {
+        $_angle: 0deg;
+      }
+    }
+    @else if index($angle, bottom) {
+      @if index($angle, left) {
+        $_angle: 225deg;
+      }
+      @else if index($angle, right) {
+        $_angle: 135deg;
+      }
+      @else {
+        $_angle: 180deg;
+      }
+    }
+    @else if index($angle, left) {
+      $_angle: 270deg
+    }
+    @else if index($angle, right) {
+      $_angle: 90deg
+    }
+    
+    // No angle found, assume it's a color
+    @if not is-number($_angle) {
+      $_angle:   180deg;
+      $values:  join($angle, $values, comma);
+    }
+    // Angle targets the source not the destination
+    @else if not index($angle, to) {
+      @debug to;
+      $_angle: $_angle - 180deg;
+    }
+  }
+
+  @include vendor(webkit) { background-image: -webkit-linear-gradient(90 - $_angle, $values); }
+  @include vendor(moz)    { background-image:    -moz-linear-gradient(90 - $_angle, $values); }
+  @include vendor(o)      { background-image:      -o-linear-gradient(90 - $_angle, $values); }
+
+  background-image: linear-gradient($_angle, $values);
+}

@@ -1,0 +1,6 @@
+@mixin -box-shadow($value...) {
+  @include vendor(webkit) { -webkit-box-shadow: $value }
+  @include vendor(moz)    {    -moz-box-shadow: $value }
+  
+  box-shadow: $value;
+}

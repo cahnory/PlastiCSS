@@ -1,0 +1,7 @@
+@mixin -transition-delay($value...) {
+  @include vendor(webkit) { -webkit-transition-delay: $value }
+  @include vendor(moz)    {    -moz-transition-delay: $value }
+  @include vendor(o)      {      -o-transition-delay: $value }
+  
+  transition-delay: $value;
+}

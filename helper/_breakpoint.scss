@@ -1,0 +1,49 @@
+// Return breakpoint query or null
+@function breakpoint($name) {
+  // None is reserved
+  @if $name == none {
+    @return none;
+  }
+
+  $_index: index($plasticss__media__breakpoint__names, $name);
+  
+  @if $_index {
+    @return unquote(nth($plasticss__media__breakpoint__queries, $_index));
+  }
+
+  @return null;
+}
+
+@mixin breakpoint($name, $min: null, $max: null, $property: width) {
+  // Unset if exists
+  @each $_name in ($name, 'lt-#{$name}', 'lte-#{$name}', 'gt-#{$name}', 'gte-#{$name}') {
+    $_index: index($plasticss__media__breakpoint__names, $_name);
+    @if $_index {
+      $plasticss__media__breakpoint__names:   splice($plasticss__media__breakpoint__names, $_index, 1);
+      $plasticss__media__breakpoint__queries: splice($plasticss__media__breakpoint__queries, $_index, 1);
+    }
+  }
+  
+  $_query: ();
+  
+  @if is-number($min) {
+    $plasticss__media__breakpoint__names:   append($plasticss__media__breakpoint__names,   'lt-#{$name}');
+    $plasticss__media__breakpoint__queries: append($plasticss__media__breakpoint__queries, '(max-#{$property}:#{$min})');
+    $plasticss__media__breakpoint__names:   append($plasticss__media__breakpoint__names,   'gte-#{$name}');
+    $plasticss__media__breakpoint__queries: append($plasticss__media__breakpoint__queries, '(min-#{$property}:#{$min})');
+    $_query: '(min-#{$property}:#{$min})';
+  }
+  @if is-number($max) {
+    $plasticss__media__breakpoint__names:   append($plasticss__media__breakpoint__names,   'lte-#{$name}');
+    $plasticss__media__breakpoint__queries: append($plasticss__media__breakpoint__queries, '(max-#{$property}:#{$max})');
+    $plasticss__media__breakpoint__names:   append($plasticss__media__breakpoint__names,   'gt-#{$name}');
+    $plasticss__media__breakpoint__queries: append($plasticss__media__breakpoint__queries, '(min-#{$property}:#{$max})');
+    $_query: append($_query, '(max-#{$property}:#{$max})');
+  }
+  $plasticss__media__breakpoint__names:   append($plasticss__media__breakpoint__names,   $name);
+  $plasticss__media__breakpoint__queries: append($plasticss__media__breakpoint__queries, implode($_query, ' and '));
+}
+
+// Don't output @media if false
+$plasticss__media__breakpoint__names:   () !default;
+$plasticss__media__breakpoint__queries: () !default;

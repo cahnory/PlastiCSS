@@ -1,0 +1,35 @@
+// Return url with path corresponding to given type
+@function url($type, $filename: false) {
+  $_path: null;
+  // Standard url function usage
+  @if not $filename {
+    $filename: $type;
+  }
+  // Type provided
+  @else {
+    $_key: index($plasticss__url--types, $type);
+    @if not $_key {
+      @warn 'Undefined url path type "#{$type}".';
+    }
+    $_path: nth($plasticss__url--paths, $_key);
+  }
+  @return #{'url(\'#{$_path}#{$filename}\')'};
+}
+
+// Set path for a type
+@mixin url($type, $path) {
+  // Search for url
+  $_key:   index($plasticss__url--types, $type);
+
+  // Already defined type
+  @if $_key != false {
+    @warn 'Url path for type "#{$type}" was already defined.';
+  }
+
+  // Set type url path
+  $plasticss__url--types: append($plasticss__url--types, $type, comma);
+  $plasticss__url--paths: append($plasticss__url--paths, $path, comma);
+}
+
+$plasticss__url--types:           ();
+$plasticss__url--paths:           ();

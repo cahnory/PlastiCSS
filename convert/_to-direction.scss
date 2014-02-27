@@ -1,0 +1,48 @@
+@function to-direction($value, $horizontal: null, $vertical: null) {
+  $_angle: nth($value, 1);
+  
+  @if 1 == length($value) and is-number($_angle) {
+    $_angle: to-number($_angle);
+    
+    // Limit angle to [0;360[
+    @if $_angle / 360 >= 1 {
+      $_angle: $_angle - 360 * floor($_angle / 360);
+    }
+
+    // Divide circle by 8 points
+    $_angle: round($_angle / 360 * 8);
+
+    // left or right start point
+    @if $_angle == 0 or $_angle == 4 {
+      $value: $horizontal;
+    }
+    @else {
+      // Avoid 4
+      @if $_angle < 4 {
+        $value: right;
+      }
+      @else {
+        $value: left;
+      }
+    }
+
+    // bottom or top start point
+    @if $_angle == 2 or $_angle == 6 {
+      $value: $value $vertical;
+    }
+    @else {
+      @if $_angle < 2 or $_angle > 6 {
+        $value: $value top;
+      }
+      @else {
+        $value: $value bottom;
+      }
+    }
+  }
+  @else {
+    @warn '#{$value} is not a number';
+  }
+  
+  
+  @return $value;
+}

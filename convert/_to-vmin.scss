@@ -1,0 +1,3 @@
+@function to-vmin($value, $coef: 1) {
+  @return 1vmin * to-number($value, $coef);
+}

@@ -1,0 +1,7 @@
+@mixin -border-bottom-image($value...) {
+  @include vendor(webkit) { -webkit-border-bottom-image: $value }
+  @include vendor(moz)    {    -moz-border-bottom-image: $value }
+  @include vendor(o)      {      -o-border-bottom-image: $value }
+  
+  border-bottom-image: $value;
+}

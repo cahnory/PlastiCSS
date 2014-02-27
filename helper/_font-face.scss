@@ -1,0 +1,31 @@
+// Declare font-face
+//
+// The usage of list as font-face package
+// is recommended:
+// <code>
+//   @include font-face($font-package...);
+// </code>
+//
+// @param string $family family name
+// @param string $file   filename without extension
+// @param string $idSvg  svg id
+// @param mixed  $weight font-weight
+// @param string $style  font-style
+// @param string $param  parameters to add to filenames
+// @return number
+@mixin font-face($family, $file: $family, $idSvg: $family, $weight: normal, $style: normal, $param: null) {
+  $_ieParam: $param;
+  @if type-of($param) == string and $param != '' {
+    $param: '?' + $param;
+  }
+  @font-face {
+    font-family: $family;
+    src: url(font, '#{$file}.eot#{$param}');
+    src: url(font, '#{$file}.eot?#{$_ieParam}#iefix') format('embedded-opentype'),
+         url(font, '#{$file}.woff#{$param}') format('woff'),
+         url(font, '#{$file}.ttf#{$param}') format('truetype'),
+         url(font, '#{$file}.svg#{$param}##{$idSvg}') format('svg');
+    font-weight: $weight;
+    font-style: $style;
+  }
+}

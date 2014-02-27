@@ -1,0 +1,3 @@
+@function to-grad($value, $coef: 1) {
+  @return 1grad * to-number($value, $coef);
+}

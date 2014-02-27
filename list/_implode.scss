@@ -1,0 +1,13 @@
+@function implode($list, $glue: '') {
+  $_string: '';
+  $_i: 1;
+  
+  @while $_i <= length($list) {
+    @if $_i != 1 {
+      $_string: '#{$_string}#{$glue}';
+    }
+    $_string: '#{$_string}#{nth($list, $_i)}';
+    $_i: $_i + 1;
+  }
+  @return $_string;
+}

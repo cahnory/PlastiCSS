@@ -1,0 +1,7 @@
+@mixin separate($selectors...) {
+  @each $_selector in $selectors {
+    #{$_selector} {
+      @content;
+    }
+  }
+}

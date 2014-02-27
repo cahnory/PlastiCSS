@@ -1,0 +1,3 @@
+@function to-pt($value, $coef: 1) {
+  @return 1pt * to-number($value, $coef);
+}

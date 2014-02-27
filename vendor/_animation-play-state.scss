@@ -1,0 +1,7 @@
+@mixin -animation-play-state($value...) {
+  @include vendor(webkit) { -webkit-animation-play-state: $value }
+  @include vendor(moz)    {    -moz-animation-play-state: $value }
+  @include vendor(o)      {      -o-animation-play-state: $value }
+  
+  animation-play-state: $value;
+}

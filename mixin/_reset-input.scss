@@ -1,0 +1,22 @@
+@mixin reset-input($extend: true) {
+  @include mixin(if($extend, '%plasticss__mixin__reset-input', false)) {
+    background: #FFF;
+    border: none;
+    color: inherit;
+    line-height: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    *font-size: 100%;
+    margin: 0;
+    padding: 0;
+
+    // Standard
+    @include -box-sizing(border-box);
+    @include -display(inline-block);
+  }
+}
+
+// !placeholders
+%plasticss__mixin__reset-input {
+  @include reset-input(false);
+}

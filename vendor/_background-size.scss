@@ -1,0 +1,7 @@
+@mixin -background-size($value...) {
+  @include vendor(webkit) { -webkit-background-size: $value }
+  @include vendor(moz)    {    -moz-background-size: $value }
+  @include vendor(o)      {      -o-background-size: $value }
+  
+  background-size: $value;
+}

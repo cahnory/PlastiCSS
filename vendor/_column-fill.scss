@@ -1,0 +1,6 @@
+@mixin -column-fill($value...) {
+  @include vendor(webkit) { -webkit-column-fill: $value }
+  @include vendor(moz)    {    -moz-column-fill: $value }
+  
+  column-fill: $value;
+}

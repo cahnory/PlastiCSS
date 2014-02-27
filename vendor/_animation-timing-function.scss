@@ -1,0 +1,7 @@
+@mixin -animation-timing-function($value...) {
+  @include vendor(webkit) { -webkit-animation-timing-function: $value }
+  @include vendor(moz)    {    -moz-animation-timing-function: $value }
+  @include vendor(o)      {      -o-animation-timing-function: $value }
+  
+  animation-timing-function: $value;
+}

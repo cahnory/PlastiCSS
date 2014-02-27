@@ -1,0 +1,11 @@
+@function slice($list, $pos, $length: length($list), $separator: auto) {
+  $_list: ();
+  
+  @if $length > 0 and $pos > 0 and $pos <= length($list) {
+    $length: if($pos + $length - 1 <= length($list), $pos + $length - 1, length($list));
+    @for $_i from $pos through $length {
+      $_list: append($_list, nth($list, $_i), $separator);
+    }
+  }
+  @return $_list;
+}

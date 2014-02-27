@@ -1,0 +1,3 @@
+@function to-vw($value, $coef: 1) {
+  @return 1vw * to-number($value, $coef);
+}

@@ -1,0 +1,26 @@
+@mixin reset-button($extend: true) {
+  @include mixin(if($extend, '%plasticss__mixin__reset-button', false)) {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    line-height: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    *font-size: 100%;
+    margin: 0;
+    padding: 0;
+
+    // Standard
+    @include -box-sizing(border-box);
+    @include -display(inline-block);
+    cursor: pointer;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+}
+
+// !placeholders
+%plasticss__mixin__reset-button {
+  @include reset-button(false);
+}

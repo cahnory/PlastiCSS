@@ -1,0 +1,28 @@
+@mixin hold-margin($side: both, $extend: true) {
+  $selector: $side;
+  @if $side == both {
+    $selector: '&:before, &:after';
+  }
+  @else if $side == top {
+    $selector: '&:before';
+  }
+  @else if $side == bottom {
+    $selector: '&:after';
+  }
+
+  @if $selector {
+    #{$selector} {
+      @include mixin(if($extend, '%plasticss__mixin__hold-margin', false)) {
+        content:  '\00A0';
+        display:  block;
+        height:   0;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+// !placeholders
+%plasticss__mixin__hold-margin {
+  @include hold-margin('&', false);
+}

@@ -1,0 +1,3 @@
+@function to-turn($value, $coef: 1) {
+  @return 1turn * to-number($value, $coef);
+}

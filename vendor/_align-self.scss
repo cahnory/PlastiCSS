@@ -1,0 +1,6 @@
+@mixin -align-self($value...) {
+  @include vendor(webkit) { -webkit-align-self: $value }
+  @include vendor(moz)    {    -moz-align-self: $value }
+  
+  align-self: $value;
+}

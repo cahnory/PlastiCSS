@@ -1,0 +1,25 @@
+@function splice($list, $pos, $length: length($list), $replacement: (), $separator: auto) {
+  $_list: ();
+  $_i: 1;
+  
+  @while $_i <= length($list) {
+    // Keeped elements
+    @if $_i != $pos {
+      $_list: append($_list, nth($list, $_i), $separator);
+      $_i: $_i + 1;
+    }
+    
+    // Splice position reached
+    @else {
+      // Add replacement
+      $_list: join($_list, $replacement, $separator);
+      
+      // Jump replaced element
+      $_i: $pos + $length;
+      
+      // Remove pos in case 0 no element is replaced
+      $pos: -1;
+    }
+  }
+  @return $_list;
+}

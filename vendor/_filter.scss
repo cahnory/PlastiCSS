@@ -1,0 +1,5 @@
+@mixin -filter($value...) {
+  @include vendor(webkit) { -webkit-filter: $value }
+  
+  filter: $value;
+}

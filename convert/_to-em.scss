@@ -1,0 +1,3 @@
+@function to-em($value, $coef: 1) {
+  @return 1em * to-number($value, $coef);
+}

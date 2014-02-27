@@ -1,0 +1,7 @@
+@mixin -animation($value...) {
+  @include vendor(webkit) { -webkit-animation: $value }
+  @include vendor(moz)    {    -moz-animation: $value }
+  @include vendor(o)      {      -o-animation: $value }
+  
+  animation: $value;
+}

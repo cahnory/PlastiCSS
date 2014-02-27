@@ -1,0 +1,18 @@
+@function is-sameas($value, $ref) {
+  @if $value != $ref {
+    @return false;
+  }
+  @else if is-number($value) {
+    @return unit($value) == unit($ref);
+  }
+  @else if is-list($value) {
+    $_i: 1;
+    @while $_i <= length($value) {
+      @if not is-sameas(nth($value, $_i), nth($ref, $_i)) {
+        @return false;
+      }
+      $_i: $_i + 1;
+    }
+  }
+  @return true;
+}

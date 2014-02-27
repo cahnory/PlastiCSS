@@ -1,0 +1,12 @@
+@mixin vendor($name) {
+  @if is-null($plasticss__vendor__name) {
+    $plasticss__vendor__name: $name;
+    @content;
+    $plasticss__vendor__name: null;
+  }
+  @else if $name == $plasticss__vendor__name {
+    @content;
+  }
+}
+
+$plasticss__vendor__name:   null !default;

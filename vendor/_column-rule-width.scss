@@ -1,0 +1,6 @@
+@mixin -column-rule-width($value...) {
+  @include vendor(webkit) { -webkit-column-rule-width: $value }
+  @include vendor(moz)    {    -moz-column-rule-width: $value }
+  
+  column-rule-width: $value;
+}

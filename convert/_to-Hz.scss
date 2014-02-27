@@ -1,0 +1,3 @@
+@function to-Hz($value, $coef: 1) {
+  @return 1Hz * to-number($value, $coef);
+}

@@ -1,0 +1,7 @@
+@mixin -transition-timing-function($value...) {
+  @include vendor(webkit) { -webkit-transition-timing-function: $value }
+  @include vendor(moz)    {    -moz-transition-timing-function: $value }
+  @include vendor(o)      {      -o-transition-timing-function: $value }
+  
+  transition-timing-function: $value;
+}

@@ -1,0 +1,6 @@
+@mixin -column-gap($value...) {
+  @include vendor(webkit) { -webkit-column-gap: $value }
+  @include vendor(moz)    {    -moz-column-gap: $value }
+  
+  column-gap: $value;
+}

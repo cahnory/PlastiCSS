@@ -1,0 +1,79 @@
+@mixin script($enabled: true, $disabled: null) {
+  // Declare content depending on script enabling state
+  //
+  // @include font-face($enabled: true) { @content }
+  //
+  // If $enabled is true, @content will be declared only if
+  // script is enabled ($plasticss__script__enabled == true)
+  //
+  // If $enabled is false, @content will be declared only if
+  // script is disabled ($plasticss__script__enabled == false)
+  //
+  // @param bool $enabled script enabling state
+  @if is-bool($enabled) and is-null($disabled) {
+    // Selector (eg.: .js and .no-js)
+    @if $plasticss__script__method == selector {
+      @if $enabled {
+        #{nth($plasticss__script__selectors, 1)} {
+          @content;
+        }
+      }
+      @else {
+        #{nth($plasticss__script__selectors, 2)} {
+          @content;
+        }
+      }
+    }
+    // split (each state is in a separate stylesheet)
+    @else if $enabled == $plasticss__script__enabled {
+      @content;
+    }
+  }
+  
+  // Declare content depending with different selector
+  // depending on script enabling state
+  //
+  // @include font-face($enabled: null, $disabled: null) { @content }
+  //
+  // If $enabled or $disabled is not a string, it will be ignored
+  //
+  // @param string $enabled   script enabled selector
+  // @param string $disabled  script disabled selector
+  @else {
+    // Selector (eg.: .js and .no-js)
+    @if $plasticss__script__method == selector {
+      // Enabled selector
+      @if is-string($enabled) {
+        #{nth($plasticss__script__selectors, 1)} {
+          #{$enabled} {
+            @content;
+          }
+        }
+      }
+      // Disabled selector
+      @if is-string($disabled) {
+        #{nth($plasticss__script__selectors, 2)} {
+          #{$disabled} {
+            @content;
+          }
+        }
+      }
+    }
+    // Script enabled and enabled selector provided
+    @else if is-string($enabled) and $plasticss__script__enabled {
+      #{$enabled} {
+        @content;
+      }
+    }
+    // Script disabled and disabled selector provided
+    @else if is-string($disabled) and not $plasticss__script__enabled {
+      #{$disabled} {
+        @content;
+      }
+    }
+  }
+}
+
+$plasticss__script__selectors: ('.js', '.no-js') !default;
+$plasticss__script__method:    split !default; // (split, selector)
+$plasticss__script__enabled:   true !default;

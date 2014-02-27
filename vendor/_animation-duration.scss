@@ -1,0 +1,7 @@
+@mixin -animation-duration($value...) {
+  @include vendor(webkit) { -webkit-animation-duration: $value }
+  @include vendor(moz)    {    -moz-animation-duration: $value }
+  @include vendor(o)      {      -o-animation-duration: $value }
+  
+  animation-duration: $value;
+}

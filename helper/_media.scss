@@ -1,0 +1,44 @@
+@mixin media($queries...) {
+  @if $plasticss__media__enabled {
+    // Remove excluded queries
+    $_queries: ();
+    @each $_query in $queries {
+      @if not index($plasticss__media__exclude, $_query) {
+        // None means no media query, global.
+        @if $_query == none {
+          // Output previous queries
+          @if 0 != length($_queries) {
+            $plasticss__media__opened: $plasticss__media__opened + 1;
+            @media #{$_queries} {
+              @content;
+            }
+            $plasticss__media__opened: $plasticss__media__opened - 1;
+          }
+          $_queries: ();
+          @content;
+        }
+        @else {
+          $_queries: append($_queries, $_query);
+        }
+      }
+    }
+    
+    // Output @media if queries remaining
+    @if 0 != length($_queries) {
+      $plasticss__media__opened: $plasticss__media__opened + 1;
+      @media #{$queries} {
+        @content;
+      }
+      $plasticss__media__opened: $plasticss__media__opened - 1;
+    }
+  }
+}
+
+// Don't output @media if false
+$plasticss__media__enabled:  true !default;
+
+// Don't output @media for this queries
+$plasticss__media__exclude:  print!default;
+
+// How many media currently "opened"
+$plasticss__media__opened:  0!default;

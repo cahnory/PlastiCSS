@@ -1,0 +1,26 @@
+@mixin rem($properties, $values...) {
+  $_px:    ();
+  $_found: false;
+
+  @each $_values in $values {
+    $_px-values: ();
+    @each $_value in $_values {
+      // Rem value found
+      @if is-number($_value) and unit($_value) == rem {
+        $_value: to-px($_value, $plasticss__rem__size);
+        $_found: true;
+      }
+      $_px-values: append($_px-values, $_value, space);
+    }
+    $_px: append($_px, $_px-values, comma);
+  }
+
+  @each $_property in $properties {
+    @if $_found {
+      #{$_property}: $_px;
+    }
+    #{$_property}: $values;
+  }
+}
+
+$plasticss__rem__size: 10!default;

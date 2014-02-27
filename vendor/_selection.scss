@@ -1,0 +1,11 @@
+@mixin -selection($base: null) {
+  @include vendor(moz) {
+    #{'#{$base}::-moz-selection'} {
+      @content;
+    }
+  }
+  
+  #{'#{$base}::selection'} {
+    @content;
+  }
+}

@@ -1,0 +1,17 @@
+@mixin -keyframes($name) {
+  @include vendor(webkit) {
+    @-webkit-keyframes #{$name} { @content }
+  }
+  
+  @include vendor(moz) {
+    @-moz-keyframes #{$name} { @content }
+  }
+  
+  @include vendor(o) {
+    @-o-keyframes #{$name} { @content }
+  }
+  
+  @keyframes #{$name} {
+    @content;
+  }
+}

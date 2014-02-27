@@ -1,0 +1,7 @@
+@mixin -animation-fill-mode($value...) {
+  @include vendor(webkit) { -webkit-animation-fill-mode: $value }
+  @include vendor(moz)    {    -moz-animation-fill-mode: $value }
+  @include vendor(o)      {      -o-animation-fill-mode: $value }
+  
+  animation-fill-mode: $value;
+}

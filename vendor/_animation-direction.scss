@@ -1,0 +1,7 @@
+@mixin -animation-direction($value...) {
+  @include vendor(webkit) { -webkit-animation-direction: $value }
+  @include vendor(moz)    {    -moz-animation-direction: $value }
+  @include vendor(o)      {      -o-animation-direction: $value }
+  
+  animation-direction: $value;
+}

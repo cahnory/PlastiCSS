@@ -1,0 +1,12 @@
+@function to-number($value, $coef: 1) {
+  $_value: nth($value, 1);
+  
+  @if 1 == length($value) and is-number($_value) {
+    $value: $coef / ($coef * 0 + 1) * $_value / ($_value * 0 + 1);
+  }
+  @else {
+    @warn '#{$value} is not a number';
+  }
+
+  @return $value;
+}
