@@ -1,3 +1,0 @@
-@function to-dppx($value, $coef: 1) {
-  @return 1dppx * to-number($value, $coef);
-}

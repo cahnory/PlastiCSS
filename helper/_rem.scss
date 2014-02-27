@@ -7,7 +7,7 @@
     @each $_value in $_values {
       // Rem value found
       @if is-number($_value) and unit($_value) == rem {
-        $_value: to-px($_value, $plasticss__rem__size);
+        $_value: to(px, $_value, $plasticss__rem__size);
         $_found: true;
       }
       $_px-values: append($_px-values, $_value, space);

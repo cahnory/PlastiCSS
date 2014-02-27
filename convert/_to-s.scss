@@ -1,3 +1,0 @@
-@function to-s($value, $coef: 1) {
-  @return 1s * to-number($value, $coef);
-}

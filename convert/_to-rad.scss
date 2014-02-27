@@ -1,3 +1,0 @@
-@function to-rad($value, $coef: 1) {
-  @return 1rad * to-number($value, $coef);
-}

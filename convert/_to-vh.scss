@@ -1,3 +1,0 @@
-@function to-vh($value, $coef: 1) {
-  @return 1vh * to-number($value, $coef);
-}

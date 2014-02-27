@@ -1,3 +1,0 @@
-@function to-deg($value, $coef: 1) {
-  @return 1deg * to-number($value, $coef);
-}

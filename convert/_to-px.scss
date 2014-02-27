@@ -1,3 +1,0 @@
-@function to-px($value, $coef: 1) {
-  @return 1px * to-number($value, $coef);
-}
