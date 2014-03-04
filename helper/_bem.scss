@@ -1,0 +1,23 @@
+@mixin bem($names, $type: element) {
+  $_prefix: false;
+
+  @if $type == e or $type == element {
+    $_prefix: $plasticss__bem__element;
+  }
+  @elseif $type == m or $type == modifier {
+    $_prefix: $plasticss__bem__modifier;
+  }
+  @else {
+    @warn "Unknown type `#{$type}` for `bem`.";
+  }
+
+  @if $_prefix {
+    #{$_prefix + implode($names, ', ' + $_prefix)} {
+      @content;
+    }
+  }
+}
+
+// Don't output @media if false
+$plasticss__bem__element:   '&__'!default;
+$plasticss__bem__modifier:  '&--'!default;
