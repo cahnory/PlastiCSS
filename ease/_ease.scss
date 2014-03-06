@@ -24,4 +24,5 @@
   }
 
   @warn "Unknown function `#{$function}` for `ease`.";
+  @return null;
 }
