@@ -1,0 +1,27 @@
+@function ease($time, $start, $end, $duration, $function: linear) {
+  @if $function == linear {
+    @return ease-linear($time, $start, $end, $duration);
+  }
+
+  @if $function == ease-in {
+    @return ease-in($time, $start, $end, $duration);
+  }
+  @if $function == ease-out {
+    @return ease-out($time, $start, $end, $duration);
+  }
+  @if $function == ease-in-out {
+    @return ease-in-out($time, $start, $end, $duration);
+  }
+
+  @if $function == ease-in-cubic {
+    @return ease-in($time, $start, $end, $duration);
+  }
+  @if $function == ease-out-cubic {
+    @return ease-out($time, $start, $end, $duration);
+  }
+  @if $function == ease-in-out-cubic {
+    @return ease-in-out($time, $start, $end, $duration);
+  }
+
+  @warn "Unknown function `#{$function}` for `ease`.";
+}

@@ -1,0 +1,9 @@
+@function ease-in-out-cubic($time, $start, $end, $duration) {
+  $time: $time / ($duration / 2);
+  @if $time < 1 {
+    @return ($end - $start) * $time * $time * $time + $start;
+  }
+
+  $time: $time - 2;
+  @return ($end - $start) / 2 * ($time * $time * $time + 2) + $start;
+}

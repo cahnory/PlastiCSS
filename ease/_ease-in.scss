@@ -1,0 +1,4 @@
+@function ease-out($time, $start, $end, $duration) {
+  $time: $time / $duration;
+  @return -($end - $start) * $time * ($time - 2) + $start;
+}

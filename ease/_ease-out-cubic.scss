@@ -1,0 +1,4 @@
+@function ease-out-cubic($time, $start, $end, $duration) {
+  $time: $time / $duration - 1;
+  @return ($end - $start) * ($time * $time * $time + 1) + $start;
+}
