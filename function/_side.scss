@@ -1,47 +1,9 @@
 @function side($value, $side) {
-  // Empty value
-  @if length($value) == 0  {
-    @return null;
-  }
+  $_sides: top right bottom left;
+  $_index: index($_sides, $side);
 
-  @if $side == top {
-    // Return top
-    @return nth($value, 1);
-  }
-
-  @if $side == right {
-    @if length($value) > 1 {
-      // Return right
-      @return nth($value, 2);
-    }
-
-    // Return top
-    @return nth($value, 1);
-  }
-
-  @if $side == bottom {
-    @if length($value) > 2 {
-      // Return bottom
-      @return nth($value, 3);
-    }
-
-    // Return top
-    @return nth($value, 1);
-  }
-
-  @if $side == left {
-    @if length($value) > 3 {
-      // Return left
-      @return nth($value, 4);
-    }
-
-    @if length($value) > 1 {
-      // Return right
-      @return nth($value, 2);
-    }
-
-    // Return top
-    @return nth($value, 1);
+  @if $_index {
+    @return nth-side($value, $_index);
   }
 
   @warn "Unknown side `#{$side}` for `side`.";

@@ -1,0 +1,6 @@
+@function nth-side($value, $n) {
+  @while length($value) < $n {
+    $value: append($value, nth($value, floor((length($value) + 1)/2)));
+  }
+  @return nth($value, $n);
+}
