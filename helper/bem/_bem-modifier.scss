@@ -1,0 +1,17 @@
+// Include modifier content
+@mixin bem-modifier($modifiers...) {
+  #{bem-modifier($modifiers...)} {
+    @content;
+  }
+}
+
+// Return selector for the modifiers
+@function bem-modifier($modifiers...) {
+  $_selectors: ();
+  @each $_modifier in $modifiers {
+    $_selectors: append($_selectors, unquote($plasticss__bem__modifier-prefix + $_modifier), comma);
+  }
+  @return $_selectors;
+}
+
+$plasticss__bem__modifier-prefix: '&--'!default;

@@ -1,0 +1,38 @@
+@import 'bem-block';
+@import 'bem-element';
+@import 'bem-modifier';
+
+@mixin bem($type, $parts...) {
+  @if $type == e or $type == element {
+    @include bem-element($parts...) {
+      @content;
+    }
+  }
+  @elseif $type == m or $type == modifier {
+    @include bem-modifier($parts...) {
+      @content;
+    }
+  }
+  @elseif $type == b or $type == block {
+    @include bem-block($parts...) {
+      @content;
+    }
+  }
+  @else {
+    @warn "Unknown type `#{$type}` for `bem`.";
+  }
+}
+
+@function bem() {
+  @if $type == e or $type == element {
+    @return bem-element($parts...);
+  }
+  @elseif $type == m or $type == modifier {
+    @return bem-modifier($parts...);
+  }
+  @elseif $type == b or $type == block {
+    @return bem-modifier($parts...);
+  }
+  @warn "Unknown type `#{$type}` for `bem`.";
+  @return null;
+}

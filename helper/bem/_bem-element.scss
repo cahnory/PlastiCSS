@@ -1,0 +1,23 @@
+// Include element content
+@mixin bem-element($elements...) {
+  #{bem-element($elements...)} {
+    @content;
+  }
+}
+
+// Return selector for the elements
+@function bem-element($elements...) {
+  $_selectors: ();
+  // List of elements
+  @each $_element in $elements {
+    $_selector: '&';
+    // Element sub parts
+    @each $_part in $_element {
+      $_selector: unquote(str-replace($plasticss__bem__element-prefix + $_part, '&', $_selector));
+    }
+    $_selectors: append($_selectors, $_selector, comma);
+  }
+  @return $_selectors;
+}
+
+$plasticss__bem__element-prefix:  '&__'!default;

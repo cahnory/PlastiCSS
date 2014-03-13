@@ -1,0 +1,21 @@
+// Include block content
+@mixin bem-block($blocks...) {
+  $_previous: $plasticss__bem__current-block;
+  $plasticss__bem__current-block: bem-block($blocks...);
+  #{$plasticss__bem__current-block} {
+    @content;
+  }
+  $plasticss__bem__current-block: $_previous;
+}
+
+// Return selector for the blocks
+@function bem-block($blocks...) {
+  $_selectors: ();
+  @each $_block in $blocks {
+    $_selectors: append($_selectors, unquote($plasticss__bem__block-prefix + $_block), comma);
+  }
+  @return $_selectors;
+}
+
+$plasticss__bem__current-block: null;
+$plasticss__bem__block-prefix:  '.'!default;
