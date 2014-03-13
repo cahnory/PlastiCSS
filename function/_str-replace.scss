@@ -1,0 +1,31 @@
+@function str-replace($string, $substring, $replacement) {
+  $_result: $string;
+  $_gap:    0;
+  $_length: length($substring);
+
+  $_index:  str-index($string, $substring);
+  @while $_index {
+    // Substring found at start
+    @if $_index == 1 {
+      $string: str-slice($string, $_length + 1);
+      @if $_gap == 0 {
+        $_result: $replacement + str-slice($_result, $_length + 1);
+      }
+      @else {
+        $_result: str-slice($_result, 1, $_gap) + $replacement + str-slice($_result, $_gap + $_length + 1);
+      }
+    }
+    // Substring found at end
+    @elseif $_index == length($string) {
+      @return str-slice($_result, 1, length($_result) - $_length) + $replacement;
+    }
+    // Substring found in the end
+    @else {
+      $string:   str-slice($string, 1, $_index - 1) + str-slice($string, $_index + $_length + 1);
+      $_result:  str-slice($_result, 1, $_index + $_gap - 1) + $replacement + str-slice($_result, $_index + $_gap + $_length + 1);
+    }
+    $_gap: $_gap + str-length($replacement);
+    $_index: str-index($string, $substring);
+  }
+  @return $_result;
+}
