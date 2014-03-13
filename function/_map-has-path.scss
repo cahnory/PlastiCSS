@@ -1,0 +1,21 @@
+@function map-has-path($map, $key, $keys...) {
+  // wrong argument
+  @if not is-map($map) {
+    @warn "$map: `#{$map}` is not a map for `map-has-path`.";
+    @return false;
+  }
+
+  // key is in a nested map
+  @if length($keys) > 0 {
+    $_nested: map-get($map, $key);
+
+    // key is not associated with a map
+    @if not is-map($_nested) {
+      @return false;
+    }
+    @return map-has-path($_nested, $keys...);
+  }
+
+  // check if map has key
+  @return map-has-key($map, $key);
+}

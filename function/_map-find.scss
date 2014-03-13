@@ -1,0 +1,15 @@
+@function map-find($map, $keys...) {
+  // wrong argument
+  @if not is-map($map) {
+    @warn "$map: `#{$map}` is not a map for `map-find`.";
+    @return false;
+  }
+
+  @each $_key in $keys {
+    $map: map-get($map, $_key);
+    @if $map == null {
+      @return null;
+    }
+  }
+  @return $map;
+}

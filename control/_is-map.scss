@@ -1,0 +1,4 @@
+@function is-map($value) {
+  @return type-of($value) == map
+       or type-of($value) == list and length($value) == 0;
+}

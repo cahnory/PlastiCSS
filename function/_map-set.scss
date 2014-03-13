@@ -1,0 +1,15 @@
+@function map-set($map, $value, $key, $keys...) {
+  // wrong argument
+  @if not is-map($map) {
+    @warn "$map: `#{$map}` is not a map for `map-set`.";
+    @return false;
+  }
+
+  // key is in a nested map
+  @if length($keys) > 0 {
+    @return map-merge($map, ($key: map-set(map-get($map, $key) or (), $value, $keys...)));
+  }
+
+  // set value
+  @return map-merge($map, ($key: $value));
+}

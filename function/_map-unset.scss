@@ -1,0 +1,27 @@
+@function map-unset($map, $key, $keys...) {
+  // wrong argument
+  @if not is-map($map) {
+    @warn "$map: `#{$map}` is not a map for `map-unset`.";
+    @return false;
+  }
+
+  // key not found
+  @if not map-has-key($map, $key) {
+    @return $map;
+  }
+ 
+  // key is in a nested map
+  @if length($keys) > 0 {
+    $_nested: map-get($map, $key);
+
+    // key is not associated with a map
+    @if not is-map($_nested) {
+      @return $map;
+    }
+
+    @return map-merge($map, ($key: map-unset($_nested, $keys...)));
+  }
+
+  // remove value
+  @return map-remove($map, $key);
+}
