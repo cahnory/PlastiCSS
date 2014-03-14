@@ -1,0 +1,26 @@
+@function explode($string, $substring, $trim: false) {
+  $_result: ();
+  $_length: str-length($substring);
+
+  // search for a substring occurence
+  $_index:  str-index($string, $substring);
+  @while $_index {
+    // append string before the index
+    @if $_index > 1 {
+      $_result: append($_result, str-slice($string, 1, $_index - 1));
+    }
+    // append empty string
+    @elseif not $trim {
+      $_result: append($_result, '');
+    }
+    // slice string after the found substring
+    $string: str-slice($string, $_index + $_length);
+    // search for a new substring occurence
+    $_index:  str-index($string, $substring);
+  }
+  // append remaining string
+  @if str-length($string) != 0 or not $trim {
+    $_result: append($_result, $string);
+  }
+  @return $_result;
+}
