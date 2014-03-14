@@ -1,0 +1,17 @@
+@function str-split($string, $length: 1) {
+  @if $length != round($length) {
+    @warn "$length: `#{$length}` is not an int for `str-split`.";
+    @return false;
+  }
+  @elseif $length < 0 {
+    @warn "$length: `#{$length}` is not greater than or equal to 0 for `str-split`.";
+    @return false;
+  }
+
+  $_result: ();
+  @while str-length($string) > 0 {
+    $_result: append($_result, str-slice($string, 1, $length));
+    $string: str-slice($string, $length + 1);
+  }
+  @return $_result;
+}
