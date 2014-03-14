@@ -1,0 +1,23 @@
+@function str-shuffle($string) {
+  $_length: str-length($string);
+  $_result: '';
+
+  // select and remove char 1 by 1
+  @for $_i from $_length through 1 {
+    // select char index in the string
+    $_index: random($_i);
+  
+    // add char to the result
+    $_result: $_result + str-slice($string, $_index, $_index);
+  
+    // remove selected char from string
+    @if $_index == 1 {
+      $string: str-slice($string, 2);
+    }
+    @else {
+      $string: str-slice($string, 1, $_index - 1) + str-slice($string, $_index + 1);
+    }
+  }
+
+  @return $_result;
+}
