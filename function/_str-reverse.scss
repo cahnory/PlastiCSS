@@ -1,0 +1,7 @@
+@function str-reverse($string) {
+  $_result: '';
+  @for $_i from 1 through str-length($string) {
+    $_result: str-slice($string, $_i, $_i) + $_result;
+  }
+  @return $_result;
+}
