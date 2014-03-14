@@ -1,0 +1,19 @@
+@function str-repeat($string, $multiplier) {
+  @if $multiplier != round($multiplier) {
+    @warn "$multiplier: `#{$multiplier}` is not an int for `str-repeat`.";
+    @return false;
+  }
+  @elseif $multiplier < 0 {
+    @warn "$multiplier: `#{$multiplier}` is not greater than or equal to 0 for `str-repeat`.";
+    @return false;
+  }
+
+  $_result: '';
+  @if $multiplier != 0 {
+    @for $_i from 1 through $multiplier {
+      $_result: $_result + $string;
+    }
+  }
+
+  @return $_result;
+}
