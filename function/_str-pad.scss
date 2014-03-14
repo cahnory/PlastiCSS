@@ -1,0 +1,36 @@
+@function str-pad($string, $length, $pad: ' ', $type: right) {
+  @if str-length($pad) == 0 {
+    @warn "$pad: `#{$length}` length is not greater than 0 for `str-pad`.";
+    @return false;
+  }
+
+  // pads length
+  $_pad-right: 0;
+  $_pad-left: 0;
+  @if $type == right {
+    $_pad-right:  $length - str-length($string);
+    $_pad-left:   0;
+  }
+  @elseif $type == left {
+    $_pad-right:  0;
+    $_pad-left:   $length - str-length($string);
+  }
+  @elseif $type == both {
+    // if not even, right pad is longer
+    $_pad-right:  ceil(($length - str-length($string)) / 2);
+    $_pad-left:   floor((($length - str-length($string)) / 2));
+  }
+  @else {
+    @warn "Unknown type `#{$type}` for `str-pad`.";
+    @return false;
+  }
+  
+  @if str-length($string) < $length {
+    $_pad-length: str-length($pad);
+    $string:  str-slice(str-repeat($pad, ceil($_pad-left / $_pad-length)), 1, $_pad-left)
+            + $string
+            + str-slice(str-repeat($pad, ceil($_pad-right / $_pad-length)), 1, $_pad-right);
+  }
+
+  @return $string;
+}
