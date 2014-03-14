@@ -1,0 +1,10 @@
+@function str-last-index($string, $substring) {
+  $_result: 0;
+  $_index: str-index($string, $substring);
+  @while $_index {
+    $_result: $_result + $_index;
+    $string: str-slice($string, $_index + 1);
+    $_index: str-index($string, $substring);
+  }
+  @return if($_result > 0, $_result, false);
+}
