@@ -1,0 +1,33 @@
+@mixin direction($direction: ltr, $current: map-get($plasticss__direction, dir)) {
+  // add selector if both directions allowed in the stylesheet
+  @if $current == both {
+    @at-root {
+      // left to right content
+      @if $direction == ltr {
+        #{map-get($plasticss__direction, ltr)} {
+          @content;
+        }
+      }
+      // right to left content
+      @elseif $direction == rtl {
+        #{map-get($plasticss__direction, rtl)} {
+          @content;
+        }
+      }
+      @else {
+        @warn "Unknown direction `#{$direction}` for `direction`.";
+      }
+    }
+  }
+  // include content directly if direction is the only one allowed
+  @elseif $current == $direction {
+    @content;
+  }
+}
+
+$plasticss__direction: ()!default;
+$plasticss__direction: map-merge((
+  ltr: '[dir="ltr"] &',
+  rtl: '[dir="rtl"] &',
+  dir: both
+), $plasticss__direction);
