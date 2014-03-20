@@ -1,25 +1,50 @@
 @mixin rem($properties, $values...) {
-  $_px:    ();
+  $_rem:    ();
+  $_norem:  ();
   $_found: false;
 
+  // loop through comma separated values
   @each $_values in $values {
-    $_px-values: ();
-    @each $_value in $_values {
-      // Rem value found
-      @if is-number($_value) and unit($_value) == rem {
-        $_value: to(px, $_value, $plasticss__rem__size);
-        $_found: true;
-      }
-      $_px-values: append($_px-values, $_value, space);
-    }
-    $_px: append($_px, $_px-values, comma);
-  }
+    $__rem: ();
+    $__norem: ();
 
-  @each $_property in $properties {
-    @if $_found {
-      #{$_property}: $_px;
+    // loop through space separated values
+    @each $_value in $_values {
+      // rem value found
+      @if is-number($_value, rem) {
+        $__norem: append($__norem, to(px, $_value * $plasticss__rem__size), space);
+        $__rem:   append($__rem,   $_value, space);
+        $_found:  true;
+      }
+      // rpx value found
+      @elseif is-number($_value, rpx) {
+        $__norem: append($__norem, to(px, $_value), space);
+        $__rem:   append($__rem,   to(rem, $_value / $plasticss__rem__size), space);
+        $_found:  true;
+      }
+      // no rem/rpx values
+      @else {
+        $__norem: append($__norem, $_value, space);
+        $__rem:   append($__rem,   $_value, space);
+      }
     }
-    #{$_property}: $values;
+
+    $_rem:    append($_rem,   $__rem,   comma);
+    $_norem:  append($_norem, $__norem, comma);
+  }
+  
+  // output rem and pixel equivalent
+  @if $_found {
+    @each $_property in $properties {
+      #{$_property}: $_norem;
+      #{$_property}: $_rem;
+    }
+  }
+  // output rem free values
+  @else {
+    @each $_property in $properties {
+      #{$_property}: $_norem;
+    }
   }
 }
 
